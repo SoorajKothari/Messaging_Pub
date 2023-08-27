@@ -1,5 +1,6 @@
 package model
 
 type Message struct {
-	Content string `json:"content"`
+	SessionId string `json:"sessionId"`
+	Content   string `json:"content"`
 }
