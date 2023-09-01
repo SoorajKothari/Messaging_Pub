@@ -1,9 +1,9 @@
 package server
 
 import (
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/context"
 	"log"
 	"net/http"
-	. "pub.go/pkg/context"
 )
 
 var globalContext *Context

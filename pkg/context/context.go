@@ -1,9 +1,9 @@
 package context
 
 import (
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/messaging"
 	"github.com/go-redis/redis/v8"
 	"log"
-	. "pub.go/pkg/messaging"
 )
 
 type Context struct {

@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 	"encoding/json"
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/context"
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/model"
 	"log"
-	. "pub.go/pkg/context"
-	. "pub.go/pkg/model"
 )
 
 func Publish(ctx *Context, msg *Message) error {

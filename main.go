@@ -1,9 +1,9 @@
 package main
 
 import (
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/context"
+	"github.com/SoorajKothari/Messaging_Pub/pkg/server"
 	"log"
-	. "pub.go/pkg/context"
-	"pub.go/pkg/server"
 )
 
 func main() {

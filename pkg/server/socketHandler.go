@@ -1,12 +1,12 @@
 package server
 
 import (
+	. "github.com/SoorajKothari/Messaging_Pub/pkg/model"
+	"github.com/SoorajKothari/Messaging_Pub/pkg/service"
+	"github.com/SoorajKothari/Messaging_Pub/pkg/store"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
-	. "pub.go/pkg/model"
-	"pub.go/pkg/service"
-	"pub.go/pkg/store"
 )
 
 var upGrader = websocket.Upgrader{}
