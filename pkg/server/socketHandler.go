@@ -1,6 +1,8 @@
 package server
 
 import (
+	"context"
+	"encoding/json"
 	. "github.com/SoorajKothari/Messaging_Pub/pkg/model"
 	"github.com/SoorajKothari/Messaging_Pub/pkg/service"
 	"github.com/SoorajKothari/Messaging_Pub/pkg/store"
@@ -34,6 +36,25 @@ func HandleConnection(writer http.ResponseWriter, request *http.Request) {
 		err = service.Publish(globalContext, &message)
 		if err != nil {
 			log.Println("Error processing message", err)
+			return
+		}
+	}
+}
+
+func Reply() {
+	pubsub := globalContext.Client.Subscribe(context.Background(), "reply")
+	channel := pubsub.Channel()
+	for msg := range channel {
+		var message Message
+		err := json.Unmarshal([]byte(msg.Payload), &message)
+		if err != nil {
+			log.Println("Invalid message")
+		}
+		log.Println("Sending reply.")
+		conn := store.GetConnectionById(message.SessionId)
+		err = conn.WriteJSON(message.Content)
+		if err != nil {
+			log.Println("Error sending reply.")
 			return
 		}
 	}

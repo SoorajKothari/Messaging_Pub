@@ -9,6 +9,7 @@ import (
 func main() {
 	log.Println("Starting App")
 	context, err := GetContext()
+	go server.Reply()
 	if err != nil {
 		log.Println("Fail to start app", err)
 		return
