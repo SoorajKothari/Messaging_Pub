@@ -6,10 +6,10 @@ import (
 	"net/http"
 )
 
-var globalContext *Context
+var GlobalContext *Context
 
 func Start(context *Context) {
-	globalContext = context
+	GlobalContext = context
 	http.HandleFunc("/v1/send", HandleConnection)
 	err := http.ListenAndServe(":9000", nil)
 	if err != nil {

@@ -33,7 +33,7 @@ func HandleConnection(writer http.ResponseWriter, request *http.Request) {
 			store.DeleteById(id)
 		}
 		message.SessionId = id
-		err = service.Publish(globalContext, &message)
+		err = service.Publish(GlobalContext, &message)
 		if err != nil {
 			log.Println("Error processing message", err)
 			return
@@ -42,7 +42,7 @@ func HandleConnection(writer http.ResponseWriter, request *http.Request) {
 }
 
 func Reply() {
-	pubsub := globalContext.Client.Subscribe(context.Background(), "reply")
+	pubsub := GlobalContext.Client.Subscribe(context.Background(), "reply")
 	channel := pubsub.Channel()
 	for msg := range channel {
 		var message Message
