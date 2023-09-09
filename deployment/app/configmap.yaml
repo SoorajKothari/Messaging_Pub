@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  redisHost: redis.redis-ns.svc.cluster.local:6379
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: pub-cm
+  namespace: pub-ns

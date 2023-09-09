@@ -14,6 +14,6 @@ func main() {
 		log.Println("Fail to start app", err)
 		return
 	}
-	log.Println("App Started", context.Version)
+	log.Println("App Started : ", context.Name)
 	server.Start(context)
 }

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publisher
+  labels:
+    app: publisher
+spec:
+  selector:
+    matchLabels:
+      app: publisher
+  template:
+    metadata:
+      name: publisher
+      labels:
+        app: publisher
+    spec:
+      containers:
+        - name: publisher
+          image: publisher:2.0
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: redisHost
+                  name: pub-cm
+      restartPolicy: Always
+      

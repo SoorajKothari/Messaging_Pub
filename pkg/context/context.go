@@ -4,18 +4,21 @@ import (
 	. "github.com/SoorajKothari/Messaging_Pub/pkg/messaging"
 	"github.com/go-redis/redis/v8"
 	"log"
+	"os"
 )
 
 type Context struct {
-	Client  *redis.Client
-	Version string
+	Client   *redis.Client
+	redisUrl string
+	Name     string
 }
 
 func GetContext() (*Context, error) {
 	context := &Context{
-		Version: "1",
+		Name: "Publisher",
 	}
-	client, err := InitializeRedis("host.docker.internal:6379")
+	context.UpdateEnvVariables()
+	client, err := InitializeRedis(context.redisUrl)
 	if err != nil {
 		log.Println("Fail to Initialize redis client", err)
 		return nil, err
@@ -23,4 +26,11 @@ func GetContext() (*Context, error) {
 	context.Client = client
 	log.Println("Client Initialized Successfully")
 	return context, nil
+}
+
+func (context *Context) UpdateEnvVariables() {
+	if val, found := os.LookupEnv("REDIS_HOST"); found {
+		context.redisUrl = val
+		log.Println("Environment Variable Resolved")
+	}
 }
